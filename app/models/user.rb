@@ -10,7 +10,7 @@ has_secure_password
 validates :password, presence: true, length: { minimum: 6 }
 
 #returns the hash digest of the given string
-def self.digest(string)
+def User.digest(string)
 	cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : 
 												  BCrypt::Engine.cost	
 	BCrypt::Password.create(string, cost: cost)
@@ -18,7 +18,7 @@ end
 
 #returns a random token
 
-def self.new_token
+def User.new_token
 	SecureRandom.urlsafe_base64
 end
 
